@@ -14,8 +14,9 @@ class Preprocess():
         value = value.astype(np.int64)
         #print(value)
         #print(freq)
-        self.value = np.arange(np.amax(value) + 1)
-        self.freq = np.zeros((np.amax(value) + 1),dtype=np.int64)
+        self.maxValue = np.amax(value)
+        self.value = np.arange(self.maxValue + 1)
+        self.freq = np.zeros(self.maxValue + 1,dtype=np.int64)
         self.freq[value] = freq
         
         #print('Value :\n',self.value)
@@ -47,7 +48,7 @@ class Preprocess():
 
 
 if __name__ == '__main__':
-    from io_data import Data
+    from data_io import Data
 
     data = Data('./')
     x = data.generate_random_data(50,32,'mixture',4)
@@ -61,3 +62,4 @@ if __name__ == '__main__':
     #print('square freq', np.sum(np.square(proc.freq[16:25])))
     print(var)
 
+    print(proc.SSE(16,16))

@@ -20,7 +20,8 @@ class Data():
             for it in range(1,nMixture+1):
                 x_tmp = self.gaussian_sample(nPoints//nMixture,xRange//(it*it), xRange)
                 x  = np.append(x, x_tmp)
-            x = x - np.amin(x)
+            # Our value start from 1 (as paper)
+            x = x - np.amin(x) + 1
         return x
     def gaussian_sample(self,nPoints,center, dev):
         center = center#np.random.randint(xRange // 4)
