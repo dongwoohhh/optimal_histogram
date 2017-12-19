@@ -11,8 +11,8 @@ from optHist import OptHist
 # parse input arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--data_path', type=str, default='./')
-parser.add_argument('--num_points', type=int,default=50000)
-parser.add_argument('--range', type=int,default=5000)
+parser.add_argument('--num_points', type=int,default=5000)
+parser.add_argument('--range', type=int,default=100)
 parser.add_argument('--num_buckets', type=int,default=3)
 parser.add_argument('--data_name', type=str, default=None)
 parser.add_argument('--toy_example',type=bool,default=False)
@@ -27,16 +27,17 @@ if config.toy_example ==False:
     else:
         x = data.load_data(config.data_name)   
     print('num points :', x.shape[0])
-    fig = plt.hist(x,400)
+    
     proc = Preprocess(x)
     oh = OptHist(proc)
+
     tic = time.time()
     sse, cut, hist = oh.findBucket(config.num_buckets)
-
     print('Running time :', time.time()-tic)
     print('Sum Squared Error :',sse)
     print('Optimal Cuts :',cut)
     x_hist, y_hist = oh.visualize_histogram(cut,hist)
+    plt.hist(x,400)
     plt.plot(x_hist,y_hist)
     plt.show()
 else :
