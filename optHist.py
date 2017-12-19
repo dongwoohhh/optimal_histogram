@@ -48,8 +48,16 @@ class OptHist():
             #print ('({}, {})'.format(idx1, idx2))
             #print(self.avg(idx1, idx2))
             
-            histogram[i] = self.avg(idx1, idx2) * (idx2 - idx1 + 1)
+            histogram[i] = self.avg(idx1, idx2) #* (idx2 - idx1 + 1)
         return histogram
+    def visualize_histogram(self,cuts,histogram):
+        x = np.empty((2*cuts.shape[0]),dtype=np.float64)
+        y = np.empty((2*cuts.shape[0]),dtype=np.float64)
+        x[0::2] = cuts
+        x[1::2] = cuts - 0.01
+        y[0::2] = np.append(0,histogram)
+        y[1::2] = np.append(histogram,0)
+        return x,y
 
 if __name__ == '__main__':
     x = np.array([2,2,2,2,3,3,3,3,3,4,4,5,6,6,6,6,6,6,6,6,6,7,8,8,8,8,9,9,9])
