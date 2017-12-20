@@ -54,7 +54,7 @@ else :
     print('hist')
     print(hist)
     x1,y1 = oh.visualize_histogram(cut,hist)
-    plt.hist(x)
+    plt.hist(x,bins=[1,2,3,4,5,6,7,8,9],range=(1,9))
     plt.plot(x1,y1)
     plt.show()
 

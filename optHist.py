@@ -54,7 +54,7 @@ class OptHist():
         x = np.empty((2*cuts.shape[0]),dtype=np.float64)
         y = np.empty((2*cuts.shape[0]),dtype=np.float64)
         x[0::2] = cuts
-        x[1::2] = cuts - 0.01
+        x[1::2] = cuts - 0.001
         y[0::2] = np.append(0,histogram)
         y[1::2] = np.append(histogram,0)
         return x,y
